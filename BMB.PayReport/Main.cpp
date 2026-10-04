@@ -28,7 +28,7 @@ Employee* getEmployeeInfo()
 
     Employee* pointerEmployee = new Employee;
 
-    cin >> pointerEmployee->ID = i + 1; // Assign an ID to each employee based on their index in the array
+    //pointerEmployee[i]->ID = i + 1; // assign an ID to each employee based on their index in the array
     cout << "First Name: ";
     cin >> pointerEmployee->FirstName;
     cout << "Last Name: ";
@@ -41,25 +41,27 @@ Employee* getEmployeeInfo()
     return pointerEmployee;
 }
 
-void printReport(Employee* employees)
+void printReport(Employee* employees, int employeeCount)
 {
     //Print a report that displays the weekly pay for each employee
     //The weekly pay for an employee is calculated as HoursWorked * HourlyRate.
 
+    cout << "\n";
+
     float totalPay = 0.0f; // Variable to hold the total pay for all employees
 
-    for (int i = 0; i < sizeof(employees) / sizeof(employees[0]); i++)
+    cout << "Pay Report\n";
+    cout << "----------\n";
+    for (int i = 0; i < employeeCount; i++)
     {
-        //The report should display the following information for each employee:
-            /*
-                ID
-                First Name
-                Last Name
-                Weekly Pay
-            */
-        Employee* pointerEmployee = employees;
-        cout << pointerEmployee->ID << "\t" << pointerEmployee->FirstName << "\t" << pointerEmployee->LastName << "\t" << pointerEmployee->HoursWorked * pointerEmployee->HourlyRate << endl;
-        totalPay += pointerEmployee->HoursWorked * pointerEmployee->HourlyRate; // Add the weekly pay for each employee to the total pay
+        Employee employee = employees[i];
+        cout << "ID: " << employee.ID << "\n";
+        cout << "First Name: " << employee.FirstName << "\n";
+        cout << "Last Name: " << employee.LastName << "\n";
+        cout << "Hours Worked: " << employee.HoursWorked << "\n";
+        cout << "Hourly Rate: " << employee.HourlyRate << "\n";
+        cout << "Weekly Pay: " << employee.HoursWorked * employee.HourlyRate << "\n\n";
+        totalPay += employee.HoursWorked * employee.HourlyRate; // Add the weekly pay for each employee to the total pay
     }
 
     //Print the total pay for all employees. The total pay for all employees is the sum of the weekly pay for each employee.
@@ -83,30 +85,9 @@ int main()
         cout << "******  Employee " << i + 1 << ".\n";
         employees[i] = *getEmployeeInfo(); // Call the getEmployeeInfo function to get the employee information and store it in the array		
     }
-
-    cout << "\n";
-
-    float totalPay = 0.0f; // Variable to hold the total pay for all employees
-
-	cout << "Pay Report\n";
-	cout << "----------\n";
-    for (int i = 0; i < employeeCount; i++)
-    {
-        Employee employee = employees[i];
-        cout << "ID: " << employee.ID << "\n";
-        cout << "First Name: " << employee.FirstName << "\n";
-        cout << "Last Name: " << employee.LastName << "\n";
-        cout << "Hours Worked: " << employee.HoursWorked << "\n";
-        cout << "Hourly Rate: " << employee.HourlyRate << "\n";
-        cout << "Weekly Pay: " << employee.HoursWorked * employee.HourlyRate << "\n\n";
-        totalPay += employee.HoursWorked * employee.HourlyRate; // Add the weekly pay for each employee to the total pay
-    }
-
-    //Print the total pay for all employees. The total pay for all employees is the sum of the weekly pay for each employee.
-    cout << "Total Pay for All Employees: " << totalPay << endl;
-
-
-    //printReport(employees); // Call the printReport function to print the report for each employee
+    
+	// Call the printReport function to print the report for each employee then total the pay for all employees.
+    printReport(employees, employeeCount); 
 
     (void)_getch();
     return 0;
