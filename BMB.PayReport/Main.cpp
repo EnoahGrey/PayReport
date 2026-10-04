@@ -29,6 +29,8 @@ Employee* getEmployeeInfo()
     Employee* pointerEmployee = new Employee;
 
     //pointerEmployee[i]->ID = i + 1; // assign an ID to each employee based on their index in the array
+	cout << "Enter Employee ID: ";
+    cin >> pointerEmployee->ID;
     cout << "First Name: ";
     cin >> pointerEmployee->FirstName;
     cout << "Last Name: ";
@@ -80,6 +82,7 @@ int main()
     //Create an array of Employee structs: 1.Define an array that holds number of employees entered by the user. Not use a global variable for the array.
     Employee* employees = new Employee[employeeCount]; // Dynamically allocate an array of Employee structs based on the number of employees entered by the user]
 
+	cout << "Enter the employee information:\n";
     for (int i = 0; i < employeeCount; i++)
     {
         cout << "******  Employee " << i + 1 << ".\n";
